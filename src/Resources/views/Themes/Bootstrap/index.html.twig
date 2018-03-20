@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block theme 'bootstrap' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/global.css') }}"
+{% endblock %}
+
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('build/main.js') }}"></script>
+{% endblock %}

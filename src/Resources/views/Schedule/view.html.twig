@@ -1,0 +1,4 @@
+{{ entity | first.name }}
+{% for key, value in entity %}
+    <p>{{ value.id }}: {{ value.mapping }}</p>
+{% endfor %}

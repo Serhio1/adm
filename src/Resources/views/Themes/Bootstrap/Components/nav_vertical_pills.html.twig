@@ -1,0 +1,10 @@
+<div class="nav-vertical-pills">
+    {% if list.title|length %}
+        <p class="menu-title">{{list.title}}</p>
+    {% endif %}
+    <ul {%if id is defined %} id="{{id}}"{%endif%} class="nav nav-pills nav-stacked">
+        {% for id, params in list.children %}
+            <li class="{% if params.url == app.request.uri %}active{% endif %}"><a href="{{ params.url }}">{{ params.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,50 @@
+{% extends 'Themes/'~theme~'/index.html.twig' %}
+
+{% block layout %}
+    {% embed 'Themes/'~theme~'/Layouts/'~layout~'.html.twig' %}
+
+        {% block block1 %}
+            {% if items.block1 is defined %}
+                {% for key, item in items.block1 %}
+                    {% if item.vars is defined %}
+                        {% include 'Themes/'~theme~'/'~item.view with item.vars|merge(global_vars)|merge({'current_block':'block1'}) only %}
+                    {% else %}
+                        {% include 'Themes/'~theme~'/'~item.view with global_vars|merge({'current_block':'block1'}) only %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+        {% block block2 %}
+            {% if items.block2 is defined %}
+                {% for component_key, item in items.block2 %}
+                    {% if item.vars is defined %}
+                        {% include 'Themes/'~theme~'/'~item.view with item.vars|merge(global_vars)|merge({'current_block':'block2', 'current_component':component_key}) only %}
+                    {% else %}
+                        {% include 'Themes/'~theme~'/'~item.view with global_vars|merge({'current_block':'block2', 'current_component':component_key}) only %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+        {% block block3 %}
+            {% if items.block3 is defined %}
+                {% for item in items.block3 %}
+                    {% if item.view is iterable %}
+                        {% include item.view|last with item.vars|merge(global_vars)|merge({'current_block':'block3'}) only %}
+                    {% else %}
+                        {% include 'Themes/'~theme~'/'~item.view with item.vars|merge(global_vars)|merge({'current_block':'block3'}) only %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+        {% block block4 %}
+            {% if items.block3 is defined %}
+                {% for item in items.block4 %}
+                    {% include 'Themes/'~theme~'/'~item.view with item.vars|merge(global_vars)|merge({'current_block':'block4'}) only %}
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

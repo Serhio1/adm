@@ -1,0 +1,74 @@
+index:
+    path: "/"
+    defaults: { _controller: 'App\Controller\UserController::home' }
+
+logout:
+    path: "/logout"
+    defaults: { _controller: 'App\Controller\UserController::logout' }
+
+# user entity
+user_create:
+    path: "/user/create"
+    defaults: { _controller: 'App\Controller\UserController::create' }
+user_edit:
+    path: "/user/{id}/edit"
+    defaults: { _controller: 'App\Controller\UserController::edit' }
+    requirements:
+        id: '\d+'
+user_view:
+    path: "/user/{id}/view"
+    defaults: { _controller: 'App\Controller\UserController::view' }
+    requirements:
+        id: '\d+'
+user_list:
+    path: "/user/list"
+    defaults: { _controller: 'App\Controller\UserController::list' }
+user_remove:
+    path: "/user/{id}/remove"
+    defaults: { _controller: 'App\Controller\UserController::remove' }
+    requirements:
+        id: '\d+'
+
+# user_schedule
+user_schedule:
+    path: "/schedule/view"
+    defaults: { _controller: 'App\Controller\UserController::scheduleView' }
+schedule_attend:
+    path: "/schedule/{name}/attend/{userid}"
+    defaults: { _controller: 'App\Controller\ScheduleController::attend' }
+schedule_unattend:
+    path: "/schedule/{name}/unattend/{userid}"
+    defaults: { _controller: 'App\Controller\ScheduleController::unattend' }
+
+# schedule entity
+schedule_create:
+    path: "/schedule/create"
+    defaults: { _controller: 'App\Controller\ScheduleController::create' }
+schedule_list:
+    path: "/schedule/list"
+    defaults: { _controller: 'App\Controller\ScheduleController::viewAll' }
+schedule_view:
+    path: "/schedule/{name}/view"
+    defaults: { _controller: 'App\Controller\ScheduleController::view' }
+schedule_edit:
+    path: "/schedule/{name}/edit"
+    defaults: { _controller: 'App\Controller\ScheduleController::edit' }
+
+
+# workshift entity
+workshift_create:
+    path: "/workshift/create"
+    defaults: { _controller: 'App\Controller\WorkshiftController::create' }
+workshift_list:
+    path: "/workshift/list"
+    defaults: { _controller: 'App\Controller\WorkshiftController::viewAll' }
+workshift_view:
+    path: "/workshift/{id}/view"
+    defaults: { _controller: 'App\Controller\WorkshiftController::view' }
+    requirements:
+        id: '\d+'
+workshift_edit:
+    path: "/workshift/{id}/edit"
+    defaults: { _controller: 'App\Controller\WorkshiftController::edit' }
+    requirements:
+        id: '\d+'

@@ -1,0 +1,18 @@
+{{ schedules | first.name }}
+{% for key, schedule in schedules %}
+    {% if schedule.current is defined %}
+        <div class="current-week">
+    {% else %}
+        <div>
+    {% endif %}
+    {% for day, workshift in schedule.mapping %}
+        {% if worshifts[workshift] is defined %}
+            <span title="{{ worshifts[workshift].title }}" style="background-color:{{ worshifts[workshift].color }}">
+                {{ workshift }}
+            </span>
+        {% else %}
+            <span>{{ workshift }}</span>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endfor %}

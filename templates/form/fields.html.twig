@@ -1,0 +1,61 @@
+{# templates/form/fields.html.twig #}
+{% block shipping_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            <ul {{ block('widget_container_attributes') }}>
+                {% for child in form %}
+                    <li>
+                        {{ form_widget(child) }}
+                        {{ form_label(child) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {# just let the choice widget render the select tag #}
+            {{ block('choice_widget') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block timetable_widget %}
+    {% spaceless %}
+            <div {{ block('widget_container_attributes') }}>
+                <div class="timetable-type">
+                    <div class="timetable_flags">
+                        {% for flag in flags  %}
+                            {% set flag_attr = '' %}
+                            {% if flag.attr is defined %}
+                                {% for key,value in flag.attr %}
+                                    {% set attr_str = key ~ '="' ~ value ~ '"' %}
+                                    {% set flag_attr = flag_attr ~ attr_str %}
+                                {% endfor %}
+                            {% endif %}
+                            <span {{ flag_attr|raw }} name="{{ flag.name }}">{{ flag.name }}</span>
+                    {% endfor %}
+                    </div>
+                    {% if controls is defined %}
+                        <div class="timetable_controls">
+
+                        </div>
+                    {% endif %}
+                    <div class="timetable_variants">
+                        {% for key, value in variants  %}
+                            <span name="null">{{ key }}</span>
+                        {% endfor %}
+
+                        {% if controls.remove is defined %}
+                            {% if controls.remove.enabled %}
+                                <button class="timetable_remove">{{ controls.remove.text | raw }}</button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    {% if controls.add is defined %}
+                        {% if controls.add.enabled %}
+                            <button class="timetable_add">{{ controls.add.text | raw }}</button>
+                        {% endif %}
+                    {% endif %}
+                    {{ block('form_widget_simple') }}
+                </div>
+            </div>
+    {% endspaceless %}
+{% endblock %}
